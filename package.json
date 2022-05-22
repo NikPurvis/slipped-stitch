@@ -1,0 +1,35 @@
+{
+  "name": "slipped-stitch",
+  "version": "1.0.0",
+  "description": "Knitters be knitting, always.",
+  "main": "ss-api/server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikPurvis/slipped-stitch.git"
+  },
+  "author": "Nikki Purvis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikPurvis/slipped-stitch/issues"
+  },
+  "homepage": "https://github.com/NikPurvis/slipped-stitch#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "mongodb": "^4.6.0",
+    "mongoose": "^6.3.4",
+    "passport": "^0.6.0",
+    "passport-http-bearer": "^1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
