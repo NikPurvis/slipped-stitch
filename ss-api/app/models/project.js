@@ -3,6 +3,8 @@
 const mongoose = require("mongoose")
 const { Schema, model } = mongoose
 
+const commentSchema = require("./comment")
+
 const projectSchema = new Schema(
 	{
 		name: {
