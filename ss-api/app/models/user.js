@@ -1,8 +1,9 @@
 // models/user.js
 
 const mongoose = require("mongoose")
+const { Schema, model } = mongoose
 
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
 	{
 		username: {
 			type: String,
@@ -17,6 +18,14 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		location: {
+			type: String,
+			required: false,
+		},
+		projects: [{
+			type: Schema.Types.ObjectId,
+			ref: "Projects"
+		}],
 		token: String,
 	},
 	{
