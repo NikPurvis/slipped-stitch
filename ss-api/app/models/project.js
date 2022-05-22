@@ -52,8 +52,7 @@ const projectSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref: "User"
 		},
-		comments: [commentSchema],
-		token: String,
+		comments: [commentSchema]
 	},
 	{
 		timestamps: true,
