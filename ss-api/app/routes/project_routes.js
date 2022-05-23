@@ -15,6 +15,7 @@ const requireOwnership = customErrors.requireOwnership
 const requireToken = passport.authenticate("bearer", { sesson: false })
 // Removes blank fields from req.body
 const removeBlanks = require("../../lib/remove_blank_fields")
+const project = require("../models/project")
 
 // Import models
 const Project = require("../models/project")
@@ -81,6 +82,19 @@ router.post("/projects", requireToken, removeBlanks, (req, res, next) => {
             // Send a successful response on creation
             res.status(201).json({ project: project.toObject() })
         })
+        .catch(next)
+})
+
+// REMOVE
+// DELETE - delete project
+router.delete("/projects/:id", requireToken, (req, res, next) => {
+    Project.findById(req.params.id)
+        .then(handle404)
+        .then(project => {
+            requireOwnership(req, project)
+            project.deleteOne()
+        })
+        .then(() => res.sendStatus(204))
         .catch(next)
 })
 // 
