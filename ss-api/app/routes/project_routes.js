@@ -2,6 +2,7 @@
 
 // Import dependencies
 const express = require("express")
+const { ObjectId } = require("mongodb")
 const passport = require("passport")
 
 // Import middleware
@@ -51,10 +52,20 @@ router.get("/projects/:id", (req, res, next) => {
         .then(project => res.status(200).json({ project: project.toObject() }))
         // Otherwise, pass to error handler
         .catch(next)
-})
+})     
 
-// ******* show/index
-// ******* get all projects by an individual user
+// SHOW
+// GET - all projects from specific user
+router.get("/projects/user/:id", (req, res, next) => {
+    userId = req.params.id
+    console.log("userid:", userId)
+    Project.find({
+        "owner": ObjectId(userId)
+    })
+    .then(handle404)
+    .then(projects => res.status(200).json({ projects }))
+    .catch(next)
+})
 
 // UPDATE
 // PATCH - edit project
