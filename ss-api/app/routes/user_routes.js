@@ -53,8 +53,7 @@ router.post("/sign-up", (req, res, next) => {
 				username: req.body.credentials.username,
 				email: req.body.credentials.email,
 				hashedPassword: hash,
-                location: req.body.credentials.location,
-                projects: req.body.credentials.projects,
+                location: req.body.credentials.location
 			}
 		})
 		// create user with provided email and hashed password

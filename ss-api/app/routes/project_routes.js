@@ -27,11 +27,25 @@ const router = express.Router()
 // Begin Routes
 /////////////////////
 // 
+// INDEX
+// GET - all projects
+router.get("/projects", (req, res, next) => {
+    Project.find()
+        .populate("knitter")
+        .then(projects => {
+            // projects will be an array of Mongoose documents.
+            // Map will return a new array, so we want to turn them into POJO (Plain Old JavaScript Objects)
+            return projects.map(project => project.toObject())
+        })
+        .then(projects => res.status(200).json({ projects }))
+})
+
+
 // CREATE
 // POST - create new project
 router.post("/projects", requireToken, removeBlanks, (req, res, next) => {
     // Bringing in requireToken gives us access to req.user
-    req.body.project.owner = req.user.id
+    req.body.project.knitter = req.user.id
 
     Project.create(req.body.project)
         .then(project => {
