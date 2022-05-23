@@ -40,6 +40,17 @@ router.get("/projects", (req, res, next) => {
         .then(projects => res.status(200).json({ projects }))
 })
 
+// SHOW
+// GET - individual project
+router.get("/projects/:id", (req, res, next) => {
+    Project.findById(req.params.id)
+        .populate("knitter")
+        .then(handle404)
+        // If successful, respond with the object as JSON
+        .then(project => res.status(200).json({ project: project.toObject() }))
+        // Otherwise, pass to error handler
+        .catch(next)
+})
 
 // CREATE
 // POST - create new project
