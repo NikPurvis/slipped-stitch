@@ -22,6 +22,14 @@ const userSchema = new Schema(
 			type: String,
 			required: false,
 		},
+		about: {
+			type: String,
+			required: false,
+		},
+		avatar: {
+			type: String,
+			required: false,
+		},
 		token: String,
 	},
 	{
