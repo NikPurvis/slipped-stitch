@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const { Schema, model } = mongoose
 
 const commentSchema = require("./comment")
+const picSchema = require("./picture")
 
 const projectSchema = new Schema(
 	{
@@ -54,6 +55,7 @@ const projectSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref: "User"
 		},
+		pictures: [picSchema],
 		comments: [commentSchema]
 	},
 	{
