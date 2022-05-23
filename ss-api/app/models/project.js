@@ -51,7 +51,7 @@ const projectSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref: "Yarn"
 		}],
-		knitter: {
+		owner: {
 			type: Schema.Types.ObjectId,
 			ref: "User"
 		},
