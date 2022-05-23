@@ -28,7 +28,7 @@ const auth = require("./lib/auth")
 // Route dependencies
 //////////////////////////////////
 // 
-// ***ROUTE FILES TO GO HERE** 
+const userRoutes = require("./app/routes/user_routes")
 // 
 //////////////////////////////////
 // End Route dependencies
@@ -102,7 +102,7 @@ app.use(requestLogger)
 // Route registration
 //////////////////////////////////
 // 
-// ***ROUTE FILES REGISTERED HERE***
+app.use(userRoutes)
 // 
 //////////////////////////////////
 // End Route registration

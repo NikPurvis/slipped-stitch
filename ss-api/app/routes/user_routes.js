@@ -66,9 +66,9 @@ router.post("/sign-up", (req, res, next) => {
 		.catch(next)
 })
 
-// SIGN IN
-// POST /sign-in
-router.post("/sign-in", (req, res, next) => {
+// LOGIN
+// POST /login
+router.post("/login", (req, res, next) => {
 	const pw = req.body.credentials.password
 	let user
 
@@ -140,7 +140,7 @@ router.patch("/change-password", requireToken, (req, res, next) => {
 		.catch(next)
 })
 
-router.delete("/sign-out", requireToken, (req, res, next) => {
+router.delete("/logout", requireToken, (req, res, next) => {
 	// create a new random token for the user, invalidating the current one
 	req.user.token = crypto.randomBytes(16)
 	// save the token and respond with 204
