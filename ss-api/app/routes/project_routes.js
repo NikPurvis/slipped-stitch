@@ -16,7 +16,6 @@ const requireOwnership = customErrors.requireOwnership
 const requireToken = passport.authenticate("bearer", { sesson: false })
 // Removes blank fields from req.body
 const removeBlanks = require("../../lib/remove_blank_fields")
-const project = require("../models/project")
 
 // Import models
 const Project = require("../models/project")
