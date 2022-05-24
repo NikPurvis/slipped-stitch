@@ -72,36 +72,51 @@ router.post("/projects/:projectId/newcomment", requireToken, removeBlanks, (req,
 
 // UPDATE
 // PATCH - edit a specific comment
-// ** Work in comment owner validation **
-router.patch("/projects/:projectId/:commentId", requireToken, removeBlanks, (req, res, next) => {
+router.patch("/projects/:projectId/:commentId", requireToken, removeBlanks, async (req, res, next) => {
     // Prevent client from changing comment owner
     delete req.body.owner
     const currentUser = req.user.id
     const projectId = req.params.projectId
     const commentId = req.params.commentId
-    const commentUpdate = req.body.comment.text
-
-    // ********get comment owner _id to compare
-
-    Project.updateOne({
-        "_id": ObjectId(projectId)
-    },{
-        $set: {
-            "comments.$[comments].text": commentUpdate
+    const newComment = req.body.comment.text
+    // Retrive the original comment to check owner details
+    const oldComment = await Project.findOne(
+        { "_id": ObjectId(projectId) },
+        { "comments": {
+            $elemMatch: { _id: ObjectId(commentId) }}
         }
-    },{
-        "upsert": false,
-        "new": true,
-        arrayFilters: [
-            {
-                "comments._id": {
-                    "$eq": ObjectId(commentId)
-                }
+    // .lean() is a read-only retrieval method, way less resource intensive
+    ).lean()
+    // Is there a better way to get the array position? The $ positional operator didn't seem to work, but it could be there's something else needed.
+    const oldCommOwner = oldComment.comments[0].owner
+
+    // Conditional to check if the comment owner is the current user. requireOwnership middleware doesn't go into nested arrays, so until I've rewritten it, we'll do it directly in the route.
+    if (oldCommOwner == currentUser) {
+        // If yes, update the comment...
+        await Project.updateOne({
+            "_id": ObjectId(projectId)
+        },{
+            $set: {
+                "comments.$[comments].text": newComment
             }
-        ]
-    })
-    .then(() => res.sendStatus(204))
-    .catch(next)
+        },{
+            "upsert": false,
+            "new": true,
+            arrayFilters: [
+                {
+                    "comments._id": {
+                        "$eq": ObjectId(commentId)
+                    }
+                }
+            ]
+        })
+        // ...and send 204 No content success status
+        .then(() => res.sendStatus(204))
+        .catch(next)
+    } else {
+        // Otherwise send 401 Unauthorized
+        return res.sendStatus(401)
+    }
 })
 
 
