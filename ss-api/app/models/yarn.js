@@ -37,8 +37,7 @@ const yarnSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref: "User"
 		},
-		pictures: [picSchema],
-		comments: [commentSchema]
+		pictures: [picSchema]
 	},
 	{
 		timestamps: true,

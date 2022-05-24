@@ -32,7 +32,13 @@ const router = express.Router()
 // GET - all projects
 router.get("/projects", (req, res, next) => {
     Project.find()
-        .populate("owner")
+        .populate("owner").populate({
+            path: "comments",
+            populate: {
+                path: "owner",
+                model: "User"
+            }
+        })
         .then(projects => {
             // projects will be an array of Mongoose documents.
             // Map will return a new array, so we want to turn them into POJO (Plain Old JavaScript Objects)
@@ -45,7 +51,13 @@ router.get("/projects", (req, res, next) => {
 // GET - individual project
 router.get("/projects/:id", (req, res, next) => {
     Project.findById(req.params.id)
-        .populate("owner")
+        .populate("owner").populate({
+            path: "comments",
+            populate: {
+                path: "owner",
+                model: "User"
+            }
+        })
         .then(handle404)
         // If successful, respond with the object as JSON
         .then(project => res.status(200).json({ project: project.toObject() }))
@@ -57,7 +69,6 @@ router.get("/projects/:id", (req, res, next) => {
 // GET - all projects from specific user
 router.get("/projects/user/:id", (req, res, next) => {
     userId = req.params.id
-    console.log("userid:", userId)
     Project.find({
         "owner": ObjectId(userId)
     })

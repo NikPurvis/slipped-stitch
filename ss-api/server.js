@@ -14,6 +14,7 @@ const requestLogger = require("./lib/request_logger")
 const userRoutes = require("./app/routes/user_routes")
 const projectRoutes = require("./app/routes/project_routes")
 const yarnRoutes = require("./app/routes/yarn_routes")
+const commentRoutes = require("./app/routes/comment_routes")
 
 // Database configuration
 // "db" will be the actual MongoDB URI as a string
@@ -66,6 +67,7 @@ app.use(requestLogger)
 app.use(userRoutes)
 app.use(projectRoutes)
 app.use(yarnRoutes)
+app.use(commentRoutes)
 
 // Error handling middleware
 // Note this comes after the route registration because they will pass it error messages
