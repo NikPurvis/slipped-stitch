@@ -122,11 +122,11 @@ router.patch("/projects/:projectId/:commentId", requireToken, removeBlanks, asyn
 
 // REMOVE
 // Delete - delete comment
-router.delete("/sightings/:sightingId/:commentId", requireToken, (req, res, next) => {
-    const sightingId = req.params.sightingId
+router.delete("/projects/:projectId/:commentId", requireToken, (req, res, next) => {
+    const projectId = req.params.projectId
     const commentId = req.params.commentId
-    Sighting.updateOne({
-        "_id": ObjectId(sightingId),
+    Project.updateOne({
+        "_id": ObjectId(projectId),
         "comments": {
             $elemMatch: { _id: ObjectId(commentId) }
         }
