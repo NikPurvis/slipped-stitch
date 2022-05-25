@@ -13,6 +13,7 @@ import LogIn from './components/auth/LogIn'
 import LogOut from './components/auth/LogOut'
 import ChangePassword from './components/auth/ChangePassword'
 import IndexProjects from "./components/projects/IndexProjects"
+import ShowProject from "./components/projects/ShowProject"
 
 const App = () => {
 
@@ -71,6 +72,14 @@ const App = () => {
 								<ChangePassword msgAlert={msgAlert} user={user} />
 							</RequireAuth>}
 					/>
+					<Route
+						path="/projects/:id"
+						element={
+							<ShowProject msgAlert={msgAlert} user={user} />
+						}
+					/>
+
+
 				</Routes>
 				
 				{msgAlerts.map((msgAlert) => (

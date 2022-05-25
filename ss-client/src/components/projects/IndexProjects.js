@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react"
 import { getAllProjects } from "../../api/projects"
 import { Card } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 // Declare a style object to corral the Project cards
 const cardContainerLayout = {
@@ -32,10 +33,13 @@ const IndexProjects = (props) => {
 
     if (projects.length > 0) {
         projectCards = projects.map(project => (
-            <Card key={project.id} style={{ width: "30%" }} className="m-2" >
+            <Card key={project.id} style={{ width: "30%" }} className="m-2">
                 <Card.Header>{project.name}</Card.Header>
                 <Card.Body>
                     <Card.Text>
+                        <Link to={`/projects/${project.id}`}>
+                            View {project.name}
+                        </Link><br />
                         {project.description}<br />
                         {project.type}<br />
                         {project.skill}<br />

@@ -7,3 +7,8 @@ import axios from "axios"
 export const getAllProjects = () => {
     return axios(`${apiUrl}/projects`)
 }
+
+// Show function
+export const getOneProject = (projectId) => {
+    return axios(`${apiUrl}/projects/${projectId}`)
+}
