@@ -12,6 +12,7 @@ import SignUp from './components/auth/SignUp'
 import LogIn from './components/auth/LogIn'
 import LogOut from './components/auth/LogOut'
 import ChangePassword from './components/auth/ChangePassword'
+import IndexProjects from "./components/projects/IndexProjects"
 
 const App = () => {
 
@@ -45,6 +46,8 @@ const App = () => {
 				<Header user={user} />
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
+					<Route path="/projects"
+						element={<IndexProjects />} />
 					<Route
 						path='/sign-up'
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
