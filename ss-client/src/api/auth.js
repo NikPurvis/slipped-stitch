@@ -15,9 +15,9 @@ export const signUp = (credentials) => {
 	})
 }
 
-export const signIn = (credentials) => {
+export const logIn = (credentials) => {
 	return axios({
-		url: apiUrl + '/sign-in',
+		url: apiUrl + '/login',
 		method: 'POST',
 		data: {
 			credentials: {

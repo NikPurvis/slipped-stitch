@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { signUp, signIn } from '../../api/auth'
+import { signUp, logIn } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
@@ -32,7 +32,7 @@ const SignUp = (props) => {
         const credentials = {email, password, passwordConfirmation}
 
 		signUp(credentials)
-			.then(() => signIn(credentials))
+			.then(() => logIn(credentials))
 			.then((res) => setUser(res.data.user))
 			.then(() =>
 				msgAlert({

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { signIn } from '../../api/auth'
+import { logIn } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
@@ -33,7 +33,7 @@ const SignIn = (props) => {
 
         const credentials = {email, password}
 
-		signIn(credentials)
+		logIn(credentials)
 			.then((res) => setUser(res.data.user))
 			.then(() =>
 				msgAlert({
@@ -57,7 +57,7 @@ const SignIn = (props) => {
     return (
         <div className='row'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Sign In</h3>
+                <h3>Login</h3>
                 <Form onSubmit={onSignIn}>
                     <Form.Group controlId='email'>
                         <Form.Label>Email address</Form.Label>

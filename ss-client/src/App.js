@@ -9,8 +9,8 @@ import Header from './components/shared/Header'
 import RequireAuth from './components/shared/RequireAuth'
 import Home from './components/Home'
 import SignUp from './components/auth/SignUp'
-import SignIn from './components/auth/SignIn'
-import SignOut from './components/auth/SignOut'
+import LogIn from './components/auth/LogIn'
+import LogOut from './components/auth/LogOut'
 import ChangePassword from './components/auth/ChangePassword'
 
 const App = () => {
@@ -50,14 +50,14 @@ const App = () => {
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
 					/>
 					<Route
-						path='/sign-in'
-						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
+						path='/login'
+						element={<LogIn msgAlert={msgAlert} setUser={setUser} />}
 					/>
 					<Route
-						path='/sign-out'
+						path='/logout'
 						element={
 							<RequireAuth user={user}>
-								<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+								<LogOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
 							</RequireAuth>
 						}
 					/>
