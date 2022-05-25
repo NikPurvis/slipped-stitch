@@ -37,9 +37,10 @@ const IndexProjects = (props) => {
                 <Card.Header>{project.name}</Card.Header>
                 <Card.Body>
                     <Card.Text>
-                        <Link to={`/projects/${project.id}`}>
+                        <Link to={`/projects/${project._id}`}>
                             View {project.name}
                         </Link><br />
+                        {project._id}<br />
                         {project.description}<br />
                         {project.type}<br />
                         {project.skill}<br />
