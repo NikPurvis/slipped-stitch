@@ -46,13 +46,7 @@ const IndexProjects = (props) => {
                         Type: <strong>{project.type}</strong><br />
                         Skill: <strong>{project.skill}</strong><br />
                         Notes: <strong>{project.notes}</strong><br/>
-                        Completed: <strong>{project.completed ? 'yes' : 'no'}</strong>
-                        <hr></hr>
-                        <p>COMMENTS</p>
-                        {project.comments.map((comment) => (
-                            <div>{comment.owner.username} said: {comment.text}</div>
-                        ))}
-                        
+                        Completed: <strong>{project.completed ? 'yes' : 'no'}</strong>                        
                     </Card.Text>
                 </Card.Body>
             </Card>

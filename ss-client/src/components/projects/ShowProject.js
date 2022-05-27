@@ -41,6 +41,15 @@ const ShowProject = (props) => {
                             Completed: {project.completed ? "yes" : "no"}
                         </small>
                     </Card.Text>
+
+                    <hr></hr>
+                    
+                    <Card.Header>COMMENTS</Card.Header>
+                    <Card.Text>
+                        {project.comments.map((comment) => (
+                            <div>{comment.owner.username} said: {comment.text}</div>
+                        ))}
+                    </Card.Text>
                 </Card.Body>
             </Card>
         </Container>
