@@ -5,6 +5,7 @@ import { getAllProjects } from "../../api/projects"
 import { Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
+
 // Declare a style object to corral the Project cards
 const cardContainerLayout = {
     display: "flex",
@@ -34,18 +35,24 @@ const IndexProjects = (props) => {
     if (projects.length > 0) {
         projectCards = projects.map(project => (
             <Card key={project.id} style={{ width: "30%" }} className="m-2">
-                <Card.Header>{project.name}</Card.Header>
+                <Card.Header>{project.name} by {project.owner.username}</Card.Header>
                 <Card.Body>
                     <Card.Text>
                         <Link to={`/projects/${project._id}`}>
                             View {project.name}
                         </Link><br />
-                        {project._id}<br />
-                        {project.description}<br />
-                        {project.type}<br />
-                        {project.skill}<br />
-                        {project.notes}<br/>
-                        {project.owner.username}
+                        projId: <strong>{project._id}</strong><br />
+                        Description: <strong>{project.description}</strong><br />
+                        Type: <strong>{project.type}</strong><br />
+                        Skill: <strong>{project.skill}</strong><br />
+                        Notes: <strong>{project.notes}</strong><br/>
+                        Completed: <strong>{project.completed ? 'yes' : 'no'}</strong>
+                        <hr></hr>
+                        <p>COMMENTS</p>
+                        {project.comments.map((comment) => (
+                            <div>{comment.owner.username} said: {comment.text}</div>
+                        ))}
+                        
                     </Card.Text>
                 </Card.Body>
             </Card>
