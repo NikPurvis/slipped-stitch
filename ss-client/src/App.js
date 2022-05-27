@@ -1,29 +1,30 @@
-// import React, { Component, Fragment } from 'react'
-import React, { useState, Fragment } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
+// import React, { Component, Fragment } from "react"
+import React, { useState, Fragment } from "react"
+import { Route, Routes } from "react-router-dom"
+import { v4 as uuid } from "uuid"
 
-// import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
-import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
-import Header from './components/shared/Header'
-import RequireAuth from './components/shared/RequireAuth'
-import Home from './components/Home'
-import SignUp from './components/auth/SignUp'
-import LogIn from './components/auth/LogIn'
-import LogOut from './components/auth/LogOut'
-import ChangePassword from './components/auth/ChangePassword'
+// import AuthenticatedRoute from "./components/shared/AuthenticatedRoute"
+import AutoDismissAlert from "./components/shared/AutoDismissAlert/AutoDismissAlert"
+import Header from "./components/shared/Header"
+import RequireAuth from "./components/shared/RequireAuth"
+import Home from "./components/Home"
+import SignUp from "./components/auth/SignUp"
+import LogIn from "./components/auth/LogIn"
+import LogOut from "./components/auth/LogOut"
+import ChangePassword from "./components/auth/ChangePassword"
 import IndexProjects from "./components/projects/IndexProjects"
 import ShowProject from "./components/projects/ShowProject"
+import CreateProject from "./components/projects/CreateProject"
 
 const App = () => {
 
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
 
-	console.log('user in app', user)
-	console.log('message alerts', msgAlerts)
+	console.log("user in app", user)
+	console.log("message alerts", msgAlerts)
 	const clearUser = () => {
-    console.log('clear user ran')
+    console.log("clear user ran")
     setUser(null)
 	}
 
@@ -46,19 +47,19 @@ const App = () => {
 			<Fragment>
 				<Header user={user} />
 				<Routes>
-					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
+					<Route path="/" element={<Home msgAlert={msgAlert} user={user} />} />
 					<Route path="/projects"
 						element={<IndexProjects />} />
 					<Route
-						path='/sign-up'
+						path="/sign-up"
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
 					/>
 					<Route
-						path='/login'
+						path="/login"
 						element={<LogIn msgAlert={msgAlert} setUser={setUser} />}
 					/>
 					<Route
-						path='/logout'
+						path="/logout"
 						element={
 							<RequireAuth user={user}>
 								<LogOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
@@ -66,17 +67,24 @@ const App = () => {
 						}
 					/>
 					<Route
-						path='/change-password'
+						path="/change-password"
 						element={
 							<RequireAuth user={user}>
 								<ChangePassword msgAlert={msgAlert} user={user} />
 							</RequireAuth>}
 					/>
 					<Route
+						path="/projects/new-project"
+						element={
+							<RequireAuth user={user}>
+								<CreateProject msgAlert={msgAlert} user={user} />
+							</RequireAuth>
+						}
+					/>
+					<Route
 						path="/projects/:id"
 						element={
-							<ShowProject msgAlert={msgAlert} user={user} />
-						}
+							<ShowProject msgAlert={msgAlert} user={user} />}
 					/>
 
 

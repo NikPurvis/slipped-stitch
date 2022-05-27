@@ -96,7 +96,7 @@ router.patch("/projects/:id", requireToken, removeBlanks, (req, res, next) => {
 // POST - create new project
 router.post("/projects", requireToken, removeBlanks, (req, res, next) => {
     // Bringing in requireToken gives us access to req.user
-    req.body.project.owner = req.user.id
+    req.body.project.owner = req.user._id
 
     Project.create(req.body.project)
         .then(project => {
