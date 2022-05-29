@@ -30,12 +30,14 @@ const CreateProject = (props) => {
     const handleChange = (e) => {
         // e === event
         e.persist()
-
+        
         setProject(prevProject => {
             const name = e.target.name
             let value = e.target.value
             console.log("e.target type:", e.target.type)
             console.log("e.target checked:", e.target.checked)
+
+            
             
             // If the form conveys a boolean value, let's enter it to the database that way.
             if(name === "completed" && e.target.checked) {
@@ -85,14 +87,20 @@ const CreateProject = (props) => {
                     onChange={handleChange}
                 />
 
-                {/* Future dropdown list */}
+                <Form.Group controlId="forBasicSelect">
                 <Form.Label>Skill</Form.Label>
-                <Form.Control
-                    placeholder="The project skill level"
+                <Form.Control as="select"
+                    placeholder="Skill Level"
                     value={project.skill}
                     name="skill"
                     onChange={handleChange}
-                />
+                >
+                    <option>Select Skill Level</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </Form.Control>
+                </Form.Group>
 
                 <Form.Label>Pattern Link</Form.Label>
                 <Form.Control
