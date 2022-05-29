@@ -4,6 +4,8 @@ import React, { useState } from "react"
 import { Form, Container, Button, FormCheck } from "react-bootstrap"
 import { createProject } from "../../api/projects"
 
+
+
 // CreateProject renders a form and calls the createProject
 // function from Axios (api/projects.js)
 const CreateProject = (props) => {
@@ -14,10 +16,12 @@ const CreateProject = (props) => {
         name: "",
         type: "",
         skill: "",
-        // patternLink: "",
+        patternLink: "",
         description: "",
-        // dateStarted: "",
+        dateStarted: "",
         completed: false,
+        dateDone: "",
+        notes: "",
     })
     console.log("project in create:", project)
     // An empty project object and a createId (to navigate)
@@ -90,6 +94,38 @@ const CreateProject = (props) => {
                     onChange={handleChange}
                 />
 
+                <Form.Label>Pattern Link</Form.Label>
+                <Form.Control
+                    placeholder="Link to pattern (if applicable)"
+                    value={project.patternLink}
+                    name="patternLink"
+                    onChange={handleChange}
+                />
+
+                <Form.Label>Date Started</Form.Label>
+                <Form.Control
+                    placeholder="Date began (format MM/DD/YYYY)"
+                    value={project.dateStarted}
+                    name="dateStarted"
+                    onChange={handleChange}
+                />
+
+                <FormCheck
+                    label="Is this project completed?"
+                    name="completed"
+                    defaultChecked={project.completed}
+                    onChange={handleChange}
+                />
+
+                {/* Future: only appear if above is checked */}
+                <Form.Label>Date Completed</Form.Label>
+                <Form.Control
+                    placeholder="Date completed (format MM/DD/YYYY)"
+                    value={project.dateDone}
+                    name="dateDone"
+                    onChange={handleChange}
+                />
+
                 <Form.Label>Description</Form.Label>
                 <Form.Control
                     placeholder="Describe the project"
@@ -97,12 +133,15 @@ const CreateProject = (props) => {
                     name="description"
                     onChange={handleChange}
                 />
-                <FormCheck
-                    label="Is this project completed?"
-                    name="completed"
-                    defaultChecked={project.completed}
+                
+                <Form.Label>Notes</Form.Label>
+                <Form.Control
+                    placeholder="Any additional notes on the project"
+                    value={project.notes}
+                    name="notes"
                     onChange={handleChange}
                 />
+
                 <Button type="submit">Submit</Button>
             </Form>
         </Container>

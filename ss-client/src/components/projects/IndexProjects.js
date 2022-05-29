@@ -51,8 +51,6 @@ const IndexProjects = (props) => {
                 </Card.Body>
             </Card>
         ))
-        
-        
     }
 
     return (
