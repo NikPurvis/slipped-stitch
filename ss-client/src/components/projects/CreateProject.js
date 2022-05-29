@@ -79,13 +79,24 @@ const CreateProject = (props) => {
                 />
                 
                 {/* Future dropdown list */}
+                <Form.Group controlId="forBasicSelect">
                 <Form.Label>Type</Form.Label>
-                <Form.Control
-                    placeholder="What this project creates"
+                <Form.Control as="select"
+                    placeholder="Type"
                     value={project.type}
                     name="type"
-                    onChange={handleChange}
-                />
+                    onChange={handleChange}>
+                    <option>Select type of project</option>
+                    <option value="blanket">Blanket</option>
+                    <option value="dishcloth">Dishcloth</option>
+                    <option value="hat">Hat</option>
+                    <option value="scarf">Scarf</option>
+                    <option value="socks">Socks</option>
+                    <option value="sweater">Sweater</option>
+                    <option value="toy">Toy</option>
+                    <option value="other">other</option>
+                </Form.Control>
+                </Form.Group>
 
                 <Form.Group controlId="forBasicSelect">
                 <Form.Label>Skill</Form.Label>
@@ -93,9 +104,8 @@ const CreateProject = (props) => {
                     placeholder="Skill Level"
                     value={project.skill}
                     name="skill"
-                    onChange={handleChange}
-                >
-                    <option>Select Skill Level</option>
+                    onChange={handleChange}>
+                    <option>Select project skill level</option>
                     <option value="beginner">Beginner</option>
                     <option value="intermediate">Intermediate</option>
                     <option value="advanced">Advanced</option>
